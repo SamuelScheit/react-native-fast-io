@@ -18,17 +18,22 @@ public extension RequestOptions {
   /**
    * Create a new instance of `RequestOptions`.
    */
-  init(url: String, method: RequestMethod, body: (any HybridInputStreamSpec)?) {
+  init(url: String, method: RequestMethod, body: (any HybridInputStreamSpec)?, headers: Dictionary<String, String>) {
     self.init(std.string(url), method, { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__ in
       if let __unwrappedValue = body {
         return bridge.create_std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_ in
-          let __cxxWrapped = HybridInputStreamSpecCxx(__unwrappedValue)
-          let __pointer = HybridInputStreamSpecCxxUnsafe.toUnsafe(__cxxWrapped)
-          return bridge.create_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_(__pointer)
+          let __cxxWrapped = __unwrappedValue.getCxxWrapper()
+          return __cxxWrapped.getCxxPart()
         }())
       } else {
         return .init()
       }
+    }(), { () -> bridge.std__unordered_map_std__string__std__string_ in
+      var __map = bridge.create_std__unordered_map_std__string__std__string_(headers.count)
+      for (__k, __v) in headers {
+        __map[std.string(__k)] = std.string(__v)
+      }
+      return __map
     }())
   }
 
@@ -61,7 +66,7 @@ public extension RequestOptions {
         if let __unwrapped = self.__body.value {
           return { () -> HybridInputStreamSpec in
             let __unsafePointer = bridge.get_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_(__unwrapped)
-            let __instance = HybridInputStreamSpecCxxUnsafe.fromUnsafe(__unsafePointer)
+            let __instance = HybridInputStreamSpec_cxx.fromUnsafe(__unsafePointer)
             return __instance.getHybridInputStreamSpec()
           }()
         } else {
@@ -74,13 +79,37 @@ public extension RequestOptions {
       self.__body = { () -> bridge.std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__ in
         if let __unwrappedValue = newValue {
           return bridge.create_std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__({ () -> bridge.std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_ in
-            let __cxxWrapped = HybridInputStreamSpecCxx(__unwrappedValue)
-            let __pointer = HybridInputStreamSpecCxxUnsafe.toUnsafe(__cxxWrapped)
-            return bridge.create_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_(__pointer)
+            let __cxxWrapped = __unwrappedValue.getCxxWrapper()
+            return __cxxWrapped.getCxxPart()
           }())
         } else {
           return .init()
         }
+      }()
+    }
+  }
+  
+  var headers: Dictionary<String, String> {
+    @inline(__always)
+    get {
+      return { () -> Dictionary<String, String> in
+        var __dictionary = Dictionary<String, String>(minimumCapacity: self.__headers.size())
+        let __keys = bridge.get_std__unordered_map_std__string__std__string__keys(self.__headers)
+        for __key in __keys {
+          let __value = self.__headers[__key]!
+          __dictionary[String(__key)] = String(__value)
+        }
+        return __dictionary
+      }()
+    }
+    @inline(__always)
+    set {
+      self.__headers = { () -> bridge.std__unordered_map_std__string__std__string_ in
+        var __map = bridge.create_std__unordered_map_std__string__std__string_(newValue.count)
+        for (__k, __v) in newValue {
+          __map[std.string(__k)] = std.string(__v)
+        }
+        return __map
       }()
     }
   }

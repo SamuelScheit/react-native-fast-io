@@ -13,10 +13,13 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `Response` to properly resolve imports.
+namespace margelo::nitro::fastio { struct Response; }
 // Forward declaration of `RequestOptions` to properly resolve imports.
 namespace margelo::nitro::fastio { struct RequestOptions; }
 
 #include <NitroModules/Promise.hpp>
+#include "Response.hpp"
 #include "RequestOptions.hpp"
 
 namespace margelo::nitro::fastio {
@@ -50,7 +53,7 @@ namespace margelo::nitro::fastio {
 
     public:
       // Methods
-      virtual std::shared_ptr<Promise<void>> request(const RequestOptions& opts) = 0;
+      virtual std::shared_ptr<Promise<Response>> request(const RequestOptions& opts) = 0;
 
     protected:
       // Hybrid Setup

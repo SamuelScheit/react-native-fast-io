@@ -48,6 +48,9 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridWebSocketManagerSpec.cpp
 )
 
+# Define a flag to check if we are building properly
+add_definitions(-DBUILDING_FASTIO_WITH_GENERATED_CMAKE_PROJECT)
+
 # Add all libraries required by the generated specs
 find_package(fbjni REQUIRED) # <-- Used for communication between Java <-> C++
 find_package(ReactAndroid REQUIRED) # <-- Used to set up React Native bindings (e.g. CallInvoker/TurboModule)

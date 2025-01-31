@@ -28,6 +28,7 @@ namespace margelo::nitro::fastio {
      * Convert this Java/Kotlin-based struct to the C++ struct Metadata by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     Metadata toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldName = clazz->getField<jni::JString>("name");

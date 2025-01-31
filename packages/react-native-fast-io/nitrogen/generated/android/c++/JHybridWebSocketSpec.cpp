@@ -61,24 +61,24 @@ namespace margelo::nitro::fastio {
     method(_javaPart);
   }
   void JHybridWebSocketSpec::onOpen(const std::function<void(const std::string& /* selectedProtocol */)>& callback) {
-    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onOpen");
-    method(_javaPart, JFunc_void_std__string::fromCpp(callback));
+    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onOpen_cxx");
+    method(_javaPart, JFunc_void_std__string_cxx::fromCpp(callback));
   }
   void JHybridWebSocketSpec::onClose(const std::function<void(double /* code */, const std::string& /* reason */)>& callback) {
-    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_double_std__string::javaobject> /* callback */)>("onClose");
-    method(_javaPart, JFunc_void_double_std__string::fromCpp(callback));
+    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_double_std__string::javaobject> /* callback */)>("onClose_cxx");
+    method(_javaPart, JFunc_void_double_std__string_cxx::fromCpp(callback));
   }
   void JHybridWebSocketSpec::onError(const std::function<void(const std::string& /* error */)>& callback) {
-    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onError");
-    method(_javaPart, JFunc_void_std__string::fromCpp(callback));
+    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onError_cxx");
+    method(_javaPart, JFunc_void_std__string_cxx::fromCpp(callback));
   }
   void JHybridWebSocketSpec::onMessage(const std::function<void(const std::string& /* message */)>& callback) {
-    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onMessage");
-    method(_javaPart, JFunc_void_std__string::fromCpp(callback));
+    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__string::javaobject> /* callback */)>("onMessage_cxx");
+    method(_javaPart, JFunc_void_std__string_cxx::fromCpp(callback));
   }
   void JHybridWebSocketSpec::onArrayBuffer(const std::function<void(const std::shared_ptr<ArrayBuffer>& /* buffer */)>& callback) {
-    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__shared_ptr_ArrayBuffer_::javaobject> /* callback */)>("onArrayBuffer");
-    method(_javaPart, JFunc_void_std__shared_ptr_ArrayBuffer_::fromCpp(callback));
+    static const auto method = _javaPart->getClass()->getMethod<void(jni::alias_ref<JFunc_void_std__shared_ptr_ArrayBuffer_::javaobject> /* callback */)>("onArrayBuffer_cxx");
+    method(_javaPart, JFunc_void_std__shared_ptr_ArrayBuffer__cxx::fromCpp(callback));
   }
 
 } // namespace margelo::nitro::fastio

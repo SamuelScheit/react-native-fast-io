@@ -23,9 +23,11 @@ class HybridNetwork : HybridNetworkSpec() {
                     }
                 }
 
-                if (responseCode !in 200..299) {
-                    throw Error("HTTP Error: $responseCode")
-                }
+				opts.headers.forEach { (key, value) ->
+					setRequestProperty(key, value)
+				}
+
+				
             }
         }
         return Promise.resolved(Unit)

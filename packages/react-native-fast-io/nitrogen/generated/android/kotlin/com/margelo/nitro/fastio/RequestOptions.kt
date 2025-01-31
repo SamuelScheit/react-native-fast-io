@@ -16,8 +16,14 @@ import com.margelo.nitro.core.*
  */
 @DoNotStrip
 @Keep
-data class RequestOptions(
-  val url: String,
-  val method: RequestMethod,
-  val body: HybridInputStreamSpec?
-)
+data class RequestOptions
+  @DoNotStrip
+  @Keep
+  constructor(
+    val url: String,
+    val method: RequestMethod,
+    val body: HybridInputStreamSpec?,
+    val headers: Map<String, String>
+  ) {
+  /* main constructor */
+}

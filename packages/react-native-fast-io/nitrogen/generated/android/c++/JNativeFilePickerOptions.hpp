@@ -30,6 +30,7 @@ namespace margelo::nitro::fastio {
      * Convert this Java/Kotlin-based struct to the C++ struct NativeFilePickerOptions by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     NativeFilePickerOptions toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldMultiple = clazz->getField<jni::JBoolean>("multiple");

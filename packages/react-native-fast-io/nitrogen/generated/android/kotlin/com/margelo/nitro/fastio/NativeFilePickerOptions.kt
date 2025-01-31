@@ -16,9 +16,14 @@ import com.margelo.nitro.core.*
  */
 @DoNotStrip
 @Keep
-data class NativeFilePickerOptions(
-  val multiple: Boolean?,
-  val startIn: String?,
-  val extensions: Array<String>?,
-  val mimeTypes: Array<String>?
-)
+data class NativeFilePickerOptions
+  @DoNotStrip
+  @Keep
+  constructor(
+    val multiple: Boolean?,
+    val startIn: String?,
+    val extensions: Array<String>?,
+    val mimeTypes: Array<String>?
+  ) {
+  /* main constructor */
+}

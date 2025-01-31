@@ -42,7 +42,7 @@ namespace margelo::nitro::fastio {
     auto __result = method(_javaPart, JArrayBuffer::wrap(buffer));
     return [&]() {
       auto __promise = Promise<void>::create();
-      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
         __promise->resolve();
       });
       __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {

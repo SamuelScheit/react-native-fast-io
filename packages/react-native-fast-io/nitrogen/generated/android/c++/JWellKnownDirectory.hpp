@@ -26,6 +26,7 @@ namespace margelo::nitro::fastio {
      * Convert this Java/Kotlin-based enum to the C++ enum WellKnownDirectory.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     WellKnownDirectory toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldOrdinal = clazz->getField<int>("_ordinal");

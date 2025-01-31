@@ -19,7 +19,11 @@ import com.margelo.nitro.core.*
  */
 @DoNotStrip
 @Keep
-@Suppress("RedundantSuppression", "KotlinJniMissingFunction", "PropertyName", "RedundantUnitReturnType", "unused")
+@Suppress(
+  "KotlinJniMissingFunction", "unused",
+  "RedundantSuppression", "RedundantUnitReturnType", "SimpleRedundantLet",
+  "LocalVariableName", "PropertyName", "PrivatePropertyName", "FunctionName"
+)
 abstract class HybridNetworkSpec: HybridObject() {
   @DoNotStrip
   private var mHybridData: HybridData = initHybrid()
@@ -43,7 +47,7 @@ abstract class HybridNetworkSpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun request(opts: RequestOptions): Promise<Unit>
+  abstract fun request(opts: RequestOptions): Promise<Response>
 
   private external fun initHybrid(): HybridData
 

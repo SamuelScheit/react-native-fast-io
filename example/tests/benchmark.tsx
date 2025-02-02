@@ -76,7 +76,7 @@ const TESTS = [
   },
 ]
 
-export const BASE_URL = Platform.OS === 'android' ? '10.0.2.2' : '172.20.10.3'
+export const BASE_URL = Platform.OS === 'android' ? '10.0.2.2' : 'localhost'
 
 export function BenchmarkUI() {
   return (

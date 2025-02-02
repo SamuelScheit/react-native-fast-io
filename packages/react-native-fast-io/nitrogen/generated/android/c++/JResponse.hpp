@@ -12,10 +12,10 @@
 
 #include "HybridInputStreamSpec.hpp"
 #include "JHybridInputStreamSpec.hpp"
-#include <NitroModules/AnyMap.hpp>
-#include <NitroModules/JAnyMap.hpp>
 #include <NitroModules/JNISharedPtr.hpp>
 #include <memory>
+#include <string>
+#include <unordered_map>
 
 namespace margelo::nitro::fastio {
 
@@ -40,12 +40,19 @@ namespace margelo::nitro::fastio {
       double status = this->getFieldValue(fieldStatus);
       static const auto fieldBody = clazz->getField<JHybridInputStreamSpec::javaobject>("body");
       jni::local_ref<JHybridInputStreamSpec::javaobject> body = this->getFieldValue(fieldBody);
-      static const auto fieldHeaders = clazz->getField<JAnyMap::javaobject>("headers");
-      jni::local_ref<JAnyMap::javaobject> headers = this->getFieldValue(fieldHeaders);
+      static const auto fieldHeaders = clazz->getField<jni::JHashMap<jni::JString, jni::JString>>("headers");
+      jni::local_ref<jni::JHashMap<jni::JString, jni::JString>> headers = this->getFieldValue(fieldHeaders);
       return Response(
         status,
         JNISharedPtr::make_shared_from_jni<JHybridInputStreamSpec>(jni::make_global(body)),
-        headers->cthis()->getMap()
+        [&]() {
+          std::unordered_map<std::string, std::string> __map;
+          __map.reserve(headers->size());
+          for (const auto& __entry : *headers) {
+            __map.emplace(__entry.first->toStdString(), __entry.second->toStdString());
+          }
+          return __map;
+        }()
       );
     }
 
@@ -58,7 +65,13 @@ namespace margelo::nitro::fastio {
       return newInstance(
         value.status,
         std::dynamic_pointer_cast<JHybridInputStreamSpec>(value.body)->getJavaPart(),
-        JAnyMap::create(value.headers)
+        [&]() {
+          auto __map = jni::JHashMap<jni::JString, jni::JString>::create(value.headers.size());
+          for (const auto& __entry : value.headers) {
+            __map->put(jni::make_jstring(__entry.first), jni::make_jstring(__entry.second));
+          }
+          return __map;
+        }()
       );
     }
   };

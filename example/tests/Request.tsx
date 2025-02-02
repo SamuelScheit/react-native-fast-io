@@ -19,6 +19,7 @@ export function RequestTestUI() {
             })
             const start = performance.now()
             console.log(await response.json())
+            console.log(response.headers)
             console.log('fetch took: ' + (performance.now() - start) + 'ms')
           } catch (error) {
             console.error(error)

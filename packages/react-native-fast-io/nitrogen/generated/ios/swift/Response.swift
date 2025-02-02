@@ -18,11 +18,17 @@ public extension Response {
   /**
    * Create a new instance of `Response`.
    */
-  init(status: Double, body: (any HybridInputStreamSpec), headers: AnyMapHolder) {
+  init(status: Double, body: (any HybridInputStreamSpec), headers: Dictionary<String, String>) {
     self.init(status, { () -> bridge.std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_ in
       let __cxxWrapped = body.getCxxWrapper()
       return __cxxWrapped.getCxxPart()
-    }(), headers.cppPart)
+    }(), { () -> bridge.std__unordered_map_std__string__std__string_ in
+      var __map = bridge.create_std__unordered_map_std__string__std__string_(headers.count)
+      for (__k, __v) in headers {
+        __map[std.string(__k)] = std.string(__v)
+      }
+      return __map
+    }())
   }
 
   var status: Double {
@@ -54,14 +60,28 @@ public extension Response {
     }
   }
   
-  var headers: AnyMapHolder {
+  var headers: Dictionary<String, String> {
     @inline(__always)
     get {
-      return AnyMapHolder(withCppPart: self.__headers)
+      return { () -> Dictionary<String, String> in
+        var __dictionary = Dictionary<String, String>(minimumCapacity: self.__headers.size())
+        let __keys = bridge.get_std__unordered_map_std__string__std__string__keys(self.__headers)
+        for __key in __keys {
+          let __value = self.__headers[__key]!
+          __dictionary[String(__key)] = String(__value)
+        }
+        return __dictionary
+      }()
     }
     @inline(__always)
     set {
-      self.__headers = newValue.cppPart
+      self.__headers = { () -> bridge.std__unordered_map_std__string__std__string_ in
+        var __map = bridge.create_std__unordered_map_std__string__std__string_(newValue.count)
+        for (__k, __v) in newValue {
+          __map[std.string(__k)] = std.string(__v)
+        }
+        return __map
+      }()
     }
   }
 }

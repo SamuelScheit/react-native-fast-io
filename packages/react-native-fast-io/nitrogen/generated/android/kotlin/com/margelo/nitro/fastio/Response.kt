@@ -22,7 +22,7 @@ data class Response
   constructor(
     val status: Double,
     val body: HybridInputStreamSpec,
-    val headers: AnyMap
+    val headers: HashMap<String, String>
   ) {
   /* main constructor */
 }

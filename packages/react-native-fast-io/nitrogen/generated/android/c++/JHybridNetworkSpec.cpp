@@ -11,8 +11,6 @@
 namespace margelo::nitro::fastio { struct Response; }
 // Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
 namespace margelo::nitro::fastio { class HybridInputStreamSpec; }
-// Forward declaration of `AnyMap` to properly resolve imports.
-namespace NitroModules { class AnyMap; }
 // Forward declaration of `RequestOptions` to properly resolve imports.
 namespace margelo::nitro::fastio { struct RequestOptions; }
 // Forward declaration of `RequestMethod` to properly resolve imports.
@@ -26,15 +24,13 @@ namespace margelo::nitro::fastio { enum class RequestMethod; }
 #include "HybridInputStreamSpec.hpp"
 #include "JHybridInputStreamSpec.hpp"
 #include <NitroModules/JNISharedPtr.hpp>
-#include <NitroModules/AnyMap.hpp>
-#include <NitroModules/JAnyMap.hpp>
+#include <unordered_map>
+#include <string>
 #include "RequestOptions.hpp"
 #include "JRequestOptions.hpp"
-#include <string>
 #include "RequestMethod.hpp"
 #include "JRequestMethod.hpp"
 #include <optional>
-#include <unordered_map>
 
 namespace margelo::nitro::fastio {
 

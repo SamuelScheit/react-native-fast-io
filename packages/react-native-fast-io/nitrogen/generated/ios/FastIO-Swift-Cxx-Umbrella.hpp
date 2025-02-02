@@ -8,8 +8,6 @@
 #pragma once
 
 // Forward declarations of C++ defined types
-// Forward declaration of `AnyMap` to properly resolve imports.
-namespace NitroModules { class AnyMap; }
 // Forward declaration of `ArrayBuffer` to properly resolve imports.
 namespace NitroModules { class ArrayBuffer; }
 // Forward declaration of `HybridDuplexStreamSpec` to properly resolve imports.
@@ -56,7 +54,6 @@ namespace margelo::nitro::fastio { enum class WellKnownDirectory; }
 #include "RequestOptions.hpp"
 #include "Response.hpp"
 #include "WellKnownDirectory.hpp"
-#include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>

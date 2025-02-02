@@ -8,8 +8,6 @@
 #pragma once
 
 // Forward declarations of C++ defined types
-// Forward declaration of `AnyMap` to properly resolve imports.
-namespace NitroModules { class AnyMap; }
 // Forward declaration of `ArrayBufferHolder` to properly resolve imports.
 namespace NitroModules { class ArrayBufferHolder; }
 // Forward declaration of `ArrayBuffer` to properly resolve imports.
@@ -67,7 +65,6 @@ namespace FastIO { class HybridWebSocketSpec_cxx; }
 #include "Metadata.hpp"
 #include "NativeFilePickerOptions.hpp"
 #include "Response.hpp"
-#include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/ArrayBufferHolder.hpp>
 #include <NitroModules/Promise.hpp>
@@ -241,6 +238,25 @@ namespace margelo::nitro::fastio::bridge::swift {
   using std__weak_ptr_margelo__nitro__fastio__HybridInputStreamSpec_ = std::weak_ptr<margelo::nitro::fastio::HybridInputStreamSpec>;
   inline std__weak_ptr_margelo__nitro__fastio__HybridInputStreamSpec_ weakify_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec_(const std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>& strong) { return strong; }
   
+  // pragma MARK: std::unordered_map<std::string, std::string>
+  /**
+   * Specialized version of `std::unordered_map<std::string, std::string>`.
+   */
+  using std__unordered_map_std__string__std__string_ = std::unordered_map<std::string, std::string>;
+  inline std::unordered_map<std::string, std::string> create_std__unordered_map_std__string__std__string_(size_t size) {
+    std::unordered_map<std::string, std::string> map;
+    map.reserve(size);
+    return map;
+  }
+  inline std::vector<std::string> get_std__unordered_map_std__string__std__string__keys(const std__unordered_map_std__string__std__string_& map) {
+    std::vector<std::string> keys;
+    keys.reserve(map.size());
+    for (const auto& entry : map) {
+      keys.push_back(entry.first);
+    }
+    return keys;
+  }
+  
   // pragma MARK: std::shared_ptr<Promise<Response>>
   /**
    * Specialized version of `std::shared_ptr<Promise<Response>>`.
@@ -282,25 +298,6 @@ namespace margelo::nitro::fastio::bridge::swift {
   using std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__ = std::optional<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>>;
   inline std::optional<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>> create_std__optional_std__shared_ptr_margelo__nitro__fastio__HybridInputStreamSpec__(const std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>& value) {
     return std::optional<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>>(value);
-  }
-  
-  // pragma MARK: std::unordered_map<std::string, std::string>
-  /**
-   * Specialized version of `std::unordered_map<std::string, std::string>`.
-   */
-  using std__unordered_map_std__string__std__string_ = std::unordered_map<std::string, std::string>;
-  inline std::unordered_map<std::string, std::string> create_std__unordered_map_std__string__std__string_(size_t size) {
-    std::unordered_map<std::string, std::string> map;
-    map.reserve(size);
-    return map;
-  }
-  inline std::vector<std::string> get_std__unordered_map_std__string__std__string__keys(const std__unordered_map_std__string__std__string_& map) {
-    std::vector<std::string> keys;
-    keys.reserve(map.size());
-    for (const auto& entry : map) {
-      keys.push_back(entry.first);
-    }
-    return keys;
   }
   
   // pragma MARK: std::shared_ptr<margelo::nitro::fastio::HybridNetworkSpec>

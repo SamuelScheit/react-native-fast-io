@@ -20,11 +20,12 @@
 
 // Forward declaration of `HybridInputStreamSpec` to properly resolve imports.
 namespace margelo::nitro::fastio { class HybridInputStreamSpec; }
+// Forward declaration of `AnyMap` to properly resolve imports.
+namespace NitroModules { class AnyMap; }
 
 #include <memory>
 #include "HybridInputStreamSpec.hpp"
-#include <unordered_map>
-#include <string>
+#include <NitroModules/AnyMap.hpp>
 
 namespace margelo::nitro::fastio {
 
@@ -35,10 +36,10 @@ namespace margelo::nitro::fastio {
   public:
     double status     SWIFT_PRIVATE;
     std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec> body     SWIFT_PRIVATE;
-    std::unordered_map<std::string, std::string> headers     SWIFT_PRIVATE;
+    std::shared_ptr<AnyMap> headers     SWIFT_PRIVATE;
 
   public:
-    explicit Response(double status, std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec> body, std::unordered_map<std::string, std::string> headers): status(status), body(body), headers(headers) {}
+    explicit Response(double status, std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec> body, std::shared_ptr<AnyMap> headers): status(status), body(body), headers(headers) {}
   };
 
 } // namespace margelo::nitro::fastio
@@ -55,14 +56,14 @@ namespace margelo::nitro {
       return Response(
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "status")),
         JSIConverter<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>>::fromJSI(runtime, obj.getProperty(runtime, "body")),
-        JSIConverter<std::unordered_map<std::string, std::string>>::fromJSI(runtime, obj.getProperty(runtime, "headers"))
+        JSIConverter<std::shared_ptr<AnyMap>>::fromJSI(runtime, obj.getProperty(runtime, "headers"))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const Response& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "status", JSIConverter<double>::toJSI(runtime, arg.status));
       obj.setProperty(runtime, "body", JSIConverter<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>>::toJSI(runtime, arg.body));
-      obj.setProperty(runtime, "headers", JSIConverter<std::unordered_map<std::string, std::string>>::toJSI(runtime, arg.headers));
+      obj.setProperty(runtime, "headers", JSIConverter<std::shared_ptr<AnyMap>>::toJSI(runtime, arg.headers));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -72,7 +73,7 @@ namespace margelo::nitro {
       jsi::Object obj = value.getObject(runtime);
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "status"))) return false;
       if (!JSIConverter<std::shared_ptr<margelo::nitro::fastio::HybridInputStreamSpec>>::canConvert(runtime, obj.getProperty(runtime, "body"))) return false;
-      if (!JSIConverter<std::unordered_map<std::string, std::string>>::canConvert(runtime, obj.getProperty(runtime, "headers"))) return false;
+      if (!JSIConverter<std::shared_ptr<AnyMap>>::canConvert(runtime, obj.getProperty(runtime, "headers"))) return false;
       return true;
     }
   };

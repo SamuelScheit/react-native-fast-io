@@ -2540,6 +2540,11 @@ react-native-nitro-modules@^0.21.0:
   resolved "https://registry.yarnpkg.com/react-native-nitro-modules/-/react-native-nitro-modules-0.21.0.tgz#e59e095b6124247ca220d5b6cb58375bc9dfac28"
   integrity sha512-7OQsFiApHnBmTmZj5Ge6A1FZb63v3BjI4p2Y0s6zff35Tq9LJemjB2tHdv5F/0tbjHBV4AYcZf5DMop3NdzOog==
 
+react-native-nitro-modules@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/react-native-nitro-modules/-/react-native-nitro-modules-0.22.0.tgz#d38ec22488bc36d60bd52f281f2081e6ed1fa255"
+  integrity sha512-3obSYG8dgg3D8lEU/xMKL/0r1A3FrKB2tIKa+LWfBaXnMfWwg5n1o2GRcLpbLtmgFPx903JjVuxhFDRAtslW0Q==
+
 readable-stream@~2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.8.tgz#91125e8042bba1b9887f49345f6277027ce8be9b"

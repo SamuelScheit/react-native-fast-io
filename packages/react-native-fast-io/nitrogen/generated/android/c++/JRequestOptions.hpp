@@ -45,8 +45,8 @@ namespace margelo::nitro::fastio {
       jni::local_ref<JRequestMethod> method = this->getFieldValue(fieldMethod);
       static const auto fieldBody = clazz->getField<JHybridInputStreamSpec::javaobject>("body");
       jni::local_ref<JHybridInputStreamSpec::javaobject> body = this->getFieldValue(fieldBody);
-      static const auto fieldHeaders = clazz->getField<jni::JHashMap<jni::JString, jni::JString>>("headers");
-      jni::local_ref<jni::JHashMap<jni::JString, jni::JString>> headers = this->getFieldValue(fieldHeaders);
+      static const auto fieldHeaders = clazz->getField<jni::JMap<jni::JString, jni::JString>>("headers");
+      jni::local_ref<jni::JMap<jni::JString, jni::JString>> headers = this->getFieldValue(fieldHeaders);
       return RequestOptions(
         url->toStdString(),
         method->toCpp(),

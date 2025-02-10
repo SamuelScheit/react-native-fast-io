@@ -8,6 +8,15 @@
 import Foundation
 import NitroModules
 
+
+func convertDictionaryToAnyMapHolder(dictionary: [String: String]) -> AnyMapHolder {
+    let anyMap = AnyMapHolder()
+    for (key, value) in dictionary {
+        anyMap.setString(key: key, value: value)
+    }
+    return anyMap
+}
+
 class HybridNetwork : HybridNetworkSpec {
 
 
@@ -48,7 +57,7 @@ class HybridNetwork : HybridNetworkSpec {
  
           let responseObject = Response(status: statusCode,
                                         body: outputStream,
-                                        headers: headers)
+                                        headers: convertDictionaryToAnyMapHolder(dictionary: headers))
           
           promise.resolve(withResult: responseObject)
       } catch {

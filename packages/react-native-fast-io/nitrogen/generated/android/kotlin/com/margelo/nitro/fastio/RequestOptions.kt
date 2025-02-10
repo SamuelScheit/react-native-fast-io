@@ -23,7 +23,7 @@ data class RequestOptions
     val url: String,
     val method: RequestMethod,
     val body: HybridInputStreamSpec?,
-    val headers: HashMap<String, String>
+    val headers: Map<String, String>
   ) {
   /* main constructor */
 }

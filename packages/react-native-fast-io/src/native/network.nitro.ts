@@ -14,7 +14,7 @@ export type RequestOptions = {
 export type Response = {
   status: number
   body: InputStream
-  headers: Record<string, string>
+  headers: AnyMap
 }
 
 export interface Network extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
